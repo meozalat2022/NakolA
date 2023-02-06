@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "202625894358",
+    "project_id": "nakola-d9f7f",
+    "storage_bucket": "nakola-d9f7f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:202625894358:android:fade613d8fc38a5be80677",
+        "android_client_info": {
+          "package_name": "com.nakola"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "202625894358-tm1uc9a1404gn9u4i0c4h1k4t3lkbovc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFBKYW-KSWoZK9jAi5kw1ZQkHfPLicFWA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "202625894358-tm1uc9a1404gn9u4i0c4h1k4t3lkbovc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
