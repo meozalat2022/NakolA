@@ -16,20 +16,78 @@ import {FACEBOOK} from '../../SocialMedia/SocialMediaLinks';
 import {YOUTUBE} from '../../SocialMedia/SocialMediaLinks';
 import {INSTAGRAM} from '../../SocialMedia/SocialMediaLinks';
 import {TIKTOK} from '../../SocialMedia/SocialMediaLinks';
+import firestore from '@react-native-firebase/firestore';
 
 const SearchResult = ({navigation}) => {
-  const [inputValue, setInputValue] = useState('');
-  const [searchResult, setSearchResult] = useState([]);
-  const [isSearchResultLoaded, setIsSearchResultLoaded] = useState(false);
+  // const [inputValue, setInputValue] = useState('');
+  // const [searchResult, setSearchResult] = useState([]);
+  // const [isSearchResultLoaded, setIsSearchResultLoaded] = useState(false);
+
+  // useEffect(() => {
+  //   const fetchSearchResult = async () => {
+  //     setIsSearchResultLoaded(true);
+  //   };
+  //   fetchSearchResult();
+  // }, [inputValue]);
+
+  // if (!isSearchResultLoaded) {
+  //   return (
+  //     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+  //       <ActivityIndicator />
+  //     </View>
+  //   );
+  // }
+  const [isMealListLoaded, setIsMealListLoaded] = useState(false);
 
   useEffect(() => {
-    const fetchSearchResult = async () => {
-      setIsSearchResultLoaded(true);
+    const fetchMeals = async () => {
+      try {
+        const mealsList = [];
+        await firestore()
+          .collection('Meal')
+          .orderBy('timestamp', 'asc')
+          .get()
+          .then(querySnapShot => {
+            querySnapShot.forEach(doc => {
+              const {id, title, imageUrl} = doc.data();
+              mealsList.push({id: doc.id, title, imageUrl});
+            });
+          });
+        setFilteredData(mealsList);
+        setMasterData(mealsList);
+        setIsMealListLoaded(true);
+      } catch (error) {
+        console.log('error', error);
+      }
     };
-    fetchSearchResult();
-  }, [inputValue]);
+    fetchMeals();
+  }, []);
 
-  if (!isSearchResultLoaded) {
+  const [filteredData, setFilteredData] = useState([]);
+  const [masterData, setMasterData] = useState([]);
+  const [search, setSearch] = useState('');
+  const [opacity, setOpacity] = useState(false);
+
+  const seachFilter = text => {
+    if (text) {
+      const newData = masterData.filter(item => {
+        const itemData = item.title
+          ? item.title.toUpperCase()
+          : ''.toUpperCase();
+        const textData = text.toUpperCase();
+        return itemData.indexOf(textData) > -1;
+      });
+      setFilteredData(newData);
+      setSearch(text);
+      setOpacity(true);
+    } else {
+      setFilteredData(masterData);
+      setSearch(text);
+      setOpacity(false);
+    }
+  };
+
+  if (!isMealListLoaded) {
     return (
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         <ActivityIndicator />
@@ -57,20 +115,20 @@ const SearchResult = ({navigation}) => {
           placeholder="بحث عن اكلة"
           textAlign="right"
           autoFocus={true}
-          onChangeText={newValue => {
-            setInputValue(newValue);
-          }}
+          onChangeText={text => seachFilter(text)}
+          value={search}
         />
       </View>
 
       <FlatList
         numColumns={2}
-        style={{width: '100%'}}
         showsVerticalScrollIndicator={false}
-        data={searchResult}
+        style={{width: '100%'}}
+        data={filteredData}
         renderItem={({item}) => {
           return (
-            <View style={styles.listItemBackground}>
+            <View
+              style={[styles.listItemBackground, {opacity: opacity ? 1 : 0}]}>
               <View>
                 <Image style={styles.image} source={{uri: item.imageUrl[0]}} />
               </View>

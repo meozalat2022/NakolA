@@ -12,6 +12,7 @@ import RecipesCategory from './src/screens/RecipesCategory';
 import ShowMealsList from './src/screens/ShowMealsList';
 import SearchResult from './src/screens/SearchResult';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Colors from './constants/Colors';
 
 const Drawer = createDrawerNavigator();
@@ -112,7 +113,7 @@ const StackNavigator = () => {
         options={({route, navigation}) => ({
           title: route.params.itemTitle,
           headerRight: () => (
-            <View style={{marginRight: 15}}>
+            <View>
               <TouchableOpacity
                 onPress={() => navigation.navigate('LandingScreen')}>
                 <FontAwesome5 name={'home'} size={22} color={Colors.primary} />
@@ -126,7 +127,7 @@ const StackNavigator = () => {
           headerTintColor: Colors.primary,
           headerTitleStyle: {
             fontWeight: 'bold',
-            fontSize: 25,
+            fontSize: 16,
           },
         })}
       />
@@ -143,21 +144,20 @@ const StackNavigator = () => {
           headerTitleStyle: {
             fontWeight: 'bold',
           },
-          // headerRight: () => (
-          //   <View style={{ marginRight: 15 }}>
-          //     <TouchableOpacity
-          //       onPress={() => navigation.navigate("SearchResult")}
-          //     >
-          //       <FontAwesome name="search" size={24} color="white" />
-          //     </TouchableOpacity>
-          //   </View>
-          // ),
+          headerRight: () => (
+            <View style={{marginRight: 15}}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('SearchResult')}>
+                <FontAwesome name="search" size={24} color="white" />
+              </TouchableOpacity>
+            </View>
+          ),
         })}
       />
       <Stack.Screen
         name="ShowMealsList"
         component={ShowMealsList}
-        options={({route}) => ({
+        options={({route, navigation}) => ({
           title: route.params.itemTitle,
           headerTitleAlign: 'center',
           headerStyle: {
@@ -167,6 +167,14 @@ const StackNavigator = () => {
           headerTitleStyle: {
             fontWeight: 'bold',
           },
+          headerRight: () => (
+            <View style={{marginRight: 15}}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('SearchResult')}>
+                <FontAwesome name="search" size={24} color="white" />
+              </TouchableOpacity>
+            </View>
+          ),
         })}
       />
     </Stack.Navigator>

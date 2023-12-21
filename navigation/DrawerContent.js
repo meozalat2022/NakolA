@@ -26,6 +26,7 @@ export const DrawerContent = ({navigation}) => {
       const catList = [];
       await firestore()
         .collection('Category')
+        .orderBy('sort', 'asc')
         .get()
         .then(querySnapShot => {
           querySnapShot.forEach(doc => {
@@ -42,7 +43,11 @@ export const DrawerContent = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View
-        style={{height: 150, justifyContent: 'center', alignItems: 'center'}}>
+        style={{
+          marginVertical: 5,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
         <Text
           style={{
             fontSize: 25,
@@ -247,6 +252,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 20,
+    marginBottom: 50,
   },
   image: {
     width: 60,

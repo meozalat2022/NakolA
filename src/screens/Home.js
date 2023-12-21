@@ -24,6 +24,7 @@ const Home = ({navigation}) => {
         const catList = [];
         await firestore()
           .collection('Category')
+          .orderBy('sort', 'asc')
           .get()
           .then(querySnapShot => {
             querySnapShot.forEach(doc => {
@@ -63,25 +64,38 @@ const Home = ({navigation}) => {
   const [loading, setLoading] = useState(false);
   const [hasMeatCube, setHasMeatCube] = useState(false);
   const [hasGroundMeat, setHasGroundMeat] = useState(false);
-  const [hasKofta, setHasKofta] = useState(false);
+  // const [hasKofta, setHasKofta] = useState(false);
   const [hasLiver, setHasLiver] = useState(false);
   const [hasSusage, setHasSusage] = useState(false);
   const [hasMeatShank, setHasMeatShank] = useState(false);
   const [hasEscalop, setHasEscalop] = useState(false);
-  const [hasMeatSteak, setHasMeatSteak] = useState(false);
+  // const [hasMeatSteak, setHasMeatSteak] = useState(false);
+  const [hasMeatFlito, setHasMeatFlito] = useState(false);
+  const [hasMeatHeart, setHasMeatHeart] = useState(false);
+  const [hasMeatKalawy, setHasMeatKalawy] = useState(false);
+  const [hasMeatKirsha, setHasMeatKirsha] = useState(false);
+  const [hasMeatKaware, setHasMeatKaware] = useState(false);
+  const [hasMeatMombar, setHasMeatMombar] = useState(false);
+  const [hasMeatHeadMeat, setHasMeatHeadMeat] = useState(false);
+  const [hasMeatAkawy, setHasMeatAkawy] = useState(false);
+  const [hasMeatBrain, setHasMeatBrain] = useState(false);
   const [hasCheckin, setHasCheckin] = useState(false);
   const [hasCheckinFillet, SetHasCheckinFillet] = useState(false);
   const [hasTurkey, setHasTurkey] = useState(false);
   const [hasKidney, setHasKidney] = useState(false);
   const [hasCheckinWings, setHasCheckinWings] = useState(false);
   const [hasCheckinLegs, setHasCheckinLegs] = useState(false);
-  const [hasShawrma, setHasShawrma] = useState(false);
+  // const [hasShawrma, setHasShawrma] = useState(false);
+  const [hasCheckinBreast, setHasCheckinBreast] = useState(false);
+  // const [hasCheckinShish, setHasCheckinShish] = useState(false);
   const [hasFish, setHasFish] = useState(false);
   const [hasSeafood, setHasSeafood] = useState(false);
   const [hasCrabs, setHasCrabs] = useState(false);
   const [hasShrimp, setHasShrimp] = useState(false);
   const [hasFishFillet, setHasFishFillet] = useState(false);
   const [hasCalamari, setHasCalamari] = useState(false);
+  const [hasLobester, setHasLobester] = useState(false);
+  const [hasTuna, setHasTuna] = useState(false);
   const [hasRice, setHasRice] = useState(false);
   const [hasPasta, setHasPasta] = useState(false);
   const [hasFrik, setHasFrik] = useState(false);
@@ -94,9 +108,34 @@ const Home = ({navigation}) => {
   const [hasOcra, setHasOcra] = useState(false);
   const [hasMolokhia, setHasMolokhia] = useState(false);
   const [hasVegetarian, setHasVegetarian] = useState(false);
-  const [hasKeto, setHasKeto] = useState(false);
+  // const [hasKeto, setHasKeto] = useState(false);
   const [hasDiet, setHasDiet] = useState(false);
   const [hasCabbage, setHasCabbage] = useState(false);
+  const [hasBorccoli, setHasBorccoli] = useState(false);
+  const [hasMashroom, setHasMashroom] = useState(false);
+  const [hasNodels, setHasNodels] = useState(false);
+  const [hasSherya, setHasSherya] = useState(false);
+  const [hasLazanya, setHasLazanya] = useState(false);
+  const [hasLessanAsfour, setHasLessanAsfour] = useState(false);
+  const [hasOat, setHasOat] = useState(false);
+  const [hasYellowLentils, setHasYellowLentils] = useState(false);
+  const [hasBlackLentils, setHasBlackLentils] = useState(false);
+  const [hasHomous, setHasHomous] = useState(false);
+  const [hasWhiteBeans, setHasWhiteBeans] = useState(false);
+  const [hasLobya, setHasLobya] = useState(false);
+  const [hasCorn, setHasCorn] = useState(false);
+  const [hasGreenBeans, setHasGreenBeans] = useState(false);
+  const [hasCarots, setHasCarots] = useState(false);
+  const [hasHotDogs, setHasHotDogs] = useState(false);
+  const [hasBasmatiRice, setHasBasmatiRice] = useState(false);
+  const [hasHamamAndSeman, setHasHamamAndSeman] = useState(false);
+  const [hasFakhda, setHasFakhda] = useState(false);
+  const [hasSalmon, setHasSalmon] = useState(false);
+  const [hasKaviar, setHasKaviar] = useState(false);
+  const [hasSweetPotato, setHasSweetPotato] = useState(false);
+  const [hasRinga, setHasRinga] = useState(false);
+  const [hasFesekh, setHasFesekh] = useState(false);
+  const [hasBorghal, setHasBorghal] = useState(false);
 
   const startLoading = () => {
     setLoading(true);
@@ -106,24 +145,37 @@ const Home = ({navigation}) => {
           hasMeatCube,
           hasGroundMeat,
           hasTurkey,
-          hasKofta,
+          // hasKofta,
           hasLiver,
           hasSusage,
           hasMeatShank,
+          // hasMeatSteak,
           hasEscalop,
+          hasMeatFlito,
+          hasMeatHeart,
+          hasMeatKalawy,
+          hasMeatKirsha,
+          hasMeatKaware,
+          hasMeatMombar,
+          hasMeatHeadMeat,
+          hasMeatAkawy,
+          hasMeatBrain,
           hasCheckin,
           hasCheckinFillet,
           hasKidney,
-          hasMeatSteak,
           hasCheckinWings,
           hasCheckinLegs,
-          hasShawrma,
+          // hasShawrma,
+          hasCheckinBreast,
+          // hasCheckinShish,
           hasFish,
           hasSeafood,
           hasCrabs,
           hasShrimp,
           hasFishFillet,
           hasCalamari,
+          hasLobester,
+          hasTuna,
           hasRice,
           hasPasta,
           hasFrik,
@@ -136,9 +188,34 @@ const Home = ({navigation}) => {
           hasOcra,
           hasMolokhia,
           hasVegetarian,
-          hasKeto,
+          // hasKeto,
           hasDiet,
           hasCabbage,
+          hasBorccoli,
+          hasMashroom,
+          hasNodels,
+          hasSherya,
+          hasLazanya,
+          hasLessanAsfour,
+          hasOat,
+          hasYellowLentils,
+          hasBlackLentils,
+          hasHomous,
+          hasWhiteBeans,
+          hasLobya,
+          hasCorn,
+          hasGreenBeans,
+          hasCarots,
+          hasHotDogs,
+          hasBasmatiRice,
+          hasHamamAndSeman,
+          hasFakhda,
+          hasSalmon,
+          hasSweetPotato,
+          hasKaviar,
+          hasRinga,
+          hasFesekh,
+          hasBorghal,
         },
       });
       setLoading(false);
@@ -147,7 +224,7 @@ const Home = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <InterstisialAdUnite />
+      {/* <InterstisialAdUnite /> */}
       <View style={styles.findRecipe}>
         <View>
           <FlatList
@@ -181,7 +258,7 @@ const Home = ({navigation}) => {
                 />
               </View>
 
-              <View style={styles.switchView}>
+              {/* <View style={styles.switchView}>
                 <Text style={styles.switchViewTitle}>كفتة</Text>
                 <Switch
                   thumbColor={Colors.primary}
@@ -189,7 +266,7 @@ const Home = ({navigation}) => {
                   value={hasKofta}
                   onValueChange={newValue => setHasKofta(newValue)}
                 />
-              </View>
+              </View> */}
 
               <View style={styles.switchView}>
                 <Text style={styles.switchViewTitle}>كبدة</Text>
@@ -222,7 +299,7 @@ const Home = ({navigation}) => {
               </View>
 
               <View style={styles.switchView}>
-                <Text style={styles.switchViewTitle}>بفتيك</Text>
+                <Text style={styles.switchViewTitle}>سكالوب</Text>
                 <Switch
                   thumbColor={Colors.primary}
                   trackColor={{true: Colors.accent, false: Colors.primary}}
@@ -231,13 +308,123 @@ const Home = ({navigation}) => {
                 />
               </View>
 
-              <View style={styles.switchView}>
-                <Text style={styles.switchViewTitle}>ستيك</Text>
+              {/* <View style={styles.switchView}>
+                <Text style={styles.switchViewTitle}>بفتيك</Text>
                 <Switch
                   thumbColor={Colors.primary}
                   trackColor={{true: Colors.accent, false: Colors.primary}}
-                  value={hasMeatSteak}
-                  onValueChange={newValue => setHasMeatSteak(newValue)}
+                  value={hasEscalop}
+                  onValueChange={newValue => setHasEscalop(newValue)}
+                />
+              </View> */}
+
+              <View style={styles.switchView}>
+                <Text style={styles.switchViewTitle}>فخدة</Text>
+                <Switch
+                  thumbColor={Colors.primary}
+                  trackColor={{true: Colors.accent, false: Colors.primary}}
+                  value={hasFakhda}
+                  onValueChange={newValue => setHasFakhda(newValue)}
+                />
+              </View>
+
+              <View style={styles.switchView}>
+                <Text style={styles.switchViewTitle}>عرق لحمة</Text>
+                <Switch
+                  thumbColor={Colors.primary}
+                  trackColor={{true: Colors.accent, false: Colors.primary}}
+                  value={hasMeatFlito}
+                  onValueChange={newValue => setHasMeatFlito(newValue)}
+                />
+              </View>
+
+              <View style={styles.switchView}>
+                <Text style={styles.switchViewTitle}>قلوب</Text>
+                <Switch
+                  thumbColor={Colors.primary}
+                  trackColor={{true: Colors.accent, false: Colors.primary}}
+                  value={hasMeatHeart}
+                  onValueChange={newValue => setHasMeatHeart(newValue)}
+                />
+              </View>
+
+              <View style={styles.switchView}>
+                <Text style={styles.switchViewTitle}>كلاوي</Text>
+                <Switch
+                  thumbColor={Colors.primary}
+                  trackColor={{true: Colors.accent, false: Colors.primary}}
+                  value={hasMeatKalawy}
+                  onValueChange={newValue => setHasMeatKalawy(newValue)}
+                />
+              </View>
+
+              <View style={styles.switchView}>
+                <Text style={styles.switchViewTitle}>كرشة</Text>
+                <Switch
+                  thumbColor={Colors.primary}
+                  trackColor={{true: Colors.accent, false: Colors.primary}}
+                  value={hasMeatKirsha}
+                  onValueChange={newValue => setHasMeatKirsha(newValue)}
+                />
+              </View>
+
+              <View style={styles.switchView}>
+                <Text style={styles.switchViewTitle}>كوارع</Text>
+                <Switch
+                  thumbColor={Colors.primary}
+                  trackColor={{true: Colors.accent, false: Colors.primary}}
+                  value={hasMeatKaware}
+                  onValueChange={newValue => setHasMeatKaware(newValue)}
+                />
+              </View>
+
+              <View style={styles.switchView}>
+                <Text style={styles.switchViewTitle}>ممبار</Text>
+                <Switch
+                  thumbColor={Colors.primary}
+                  trackColor={{true: Colors.accent, false: Colors.primary}}
+                  value={hasMeatMombar}
+                  onValueChange={newValue => setHasMeatMombar(newValue)}
+                />
+              </View>
+
+              <View style={styles.switchView}>
+                <Text style={styles.switchViewTitle}>لحمة راس</Text>
+                <Switch
+                  thumbColor={Colors.primary}
+                  trackColor={{true: Colors.accent, false: Colors.primary}}
+                  value={hasMeatHeadMeat}
+                  onValueChange={newValue => setHasMeatHeadMeat(newValue)}
+                />
+              </View>
+
+              <View style={styles.switchView}>
+                <Text style={styles.switchViewTitle}>عكاوي</Text>
+                <Switch
+                  thumbColor={Colors.primary}
+                  trackColor={{true: Colors.accent, false: Colors.primary}}
+                  value={hasMeatAkawy}
+                  onValueChange={newValue => setHasMeatAkawy(newValue)}
+                />
+              </View>
+
+              <View style={styles.switchView}>
+                <Text style={styles.switchViewTitle}>مخ</Text>
+                <Switch
+                  thumbColor={Colors.primary}
+                  trackColor={{true: Colors.accent, false: Colors.primary}}
+                  value={hasMeatBrain}
+                  onValueChange={newValue => setHasMeatBrain(newValue)}
+                />
+              </View>
+
+              <View style={styles.switchView}>
+                <Text style={styles.switchViewTitle}>هوت دوج</Text>
+                <Switch
+                  thumbColor={Colors.primary}
+                  trackColor={{true: Colors.accent, false: Colors.primary}}
+                  value={hasHotDogs}
+                  onValueChange={newValue => setHasHotDogs(newValue)}
                 />
               </View>
 
@@ -304,14 +491,34 @@ const Home = ({navigation}) => {
               </View>
 
               <View style={styles.switchView}>
-                <Text style={styles.switchViewTitle}>شاورما</Text>
+                <Text style={styles.switchViewTitle}>صدور فراخ</Text>
                 <Switch
                   thumbColor={Colors.primary}
                   trackColor={{true: Colors.accent, false: Colors.primary}}
-                  value={hasShawrma}
-                  onValueChange={newValue => setHasShawrma(newValue)}
+                  value={hasCheckinBreast}
+                  onValueChange={newValue => setHasCheckinBreast(newValue)}
                 />
               </View>
+
+              <View style={styles.switchView}>
+                <Text style={styles.switchViewTitle}>حمام وسمان</Text>
+                <Switch
+                  thumbColor={Colors.primary}
+                  trackColor={{true: Colors.accent, false: Colors.primary}}
+                  value={hasHamamAndSeman}
+                  onValueChange={newValue => setHasHamamAndSeman(newValue)}
+                />
+              </View>
+
+              {/* <View style={styles.switchView}>
+                <Text style={styles.switchViewTitle}>شيش طاوق</Text>
+                <Switch
+                  thumbColor={Colors.primary}
+                  trackColor={{true: Colors.accent, false: Colors.primary}}
+                  value={hasCheckinShish}
+                  onValueChange={newValue => setHasCheckinShish(newValue)}
+                />
+              </View> */}
 
               <Text style={styles.title}> اسماك </Text>
               <BannerAdUnite />
@@ -376,6 +583,64 @@ const Home = ({navigation}) => {
                 />
               </View>
 
+              <View style={styles.switchView}>
+                <Text style={styles.switchViewTitle}>استاكوزا</Text>
+                <Switch
+                  thumbColor={Colors.primary}
+                  trackColor={{true: Colors.accent, false: Colors.primary}}
+                  value={hasLobester}
+                  onValueChange={newValue => setHasLobester(newValue)}
+                />
+              </View>
+
+              <View style={styles.switchView}>
+                <Text style={styles.switchViewTitle}>تونة</Text>
+                <Switch
+                  thumbColor={Colors.primary}
+                  trackColor={{true: Colors.accent, false: Colors.primary}}
+                  value={hasTuna}
+                  onValueChange={newValue => setHasTuna(newValue)}
+                />
+              </View>
+              <View style={styles.switchView}>
+                <Text style={styles.switchViewTitle}>سلمون</Text>
+                <Switch
+                  thumbColor={Colors.primary}
+                  trackColor={{true: Colors.accent, false: Colors.primary}}
+                  value={hasSalmon}
+                  onValueChange={newValue => setHasSalmon(newValue)}
+                />
+              </View>
+              <View style={styles.switchView}>
+                <Text style={styles.switchViewTitle}>كفيار</Text>
+                <Switch
+                  thumbColor={Colors.primary}
+                  trackColor={{true: Colors.accent, false: Colors.primary}}
+                  value={hasKaviar}
+                  onValueChange={newValue => setHasKaviar(newValue)}
+                />
+              </View>
+
+              <View style={styles.switchView}>
+                <Text style={styles.switchViewTitle}>رنجة</Text>
+                <Switch
+                  thumbColor={Colors.primary}
+                  trackColor={{true: Colors.accent, false: Colors.primary}}
+                  value={hasRinga}
+                  onValueChange={newValue => setHasRinga(newValue)}
+                />
+              </View>
+
+              <View style={styles.switchView}>
+                <Text style={styles.switchViewTitle}>فسيخ</Text>
+                <Switch
+                  thumbColor={Colors.primary}
+                  trackColor={{true: Colors.accent, false: Colors.primary}}
+                  value={hasFesekh}
+                  onValueChange={newValue => setHasFesekh(newValue)}
+                />
+              </View>
+
               <Text style={styles.title}> النشويات </Text>
 
               <View style={styles.switchView}>
@@ -385,6 +650,15 @@ const Home = ({navigation}) => {
                   trackColor={{true: Colors.accent, false: Colors.primary}}
                   value={hasRice}
                   onValueChange={newValue => setHasRice(newValue)}
+                />
+              </View>
+              <View style={styles.switchView}>
+                <Text style={styles.switchViewTitle}>رز بسمتي</Text>
+                <Switch
+                  thumbColor={Colors.primary}
+                  trackColor={{true: Colors.accent, false: Colors.primary}}
+                  value={hasBasmatiRice}
+                  onValueChange={newValue => setHasBasmatiRice(newValue)}
                 />
               </View>
 
@@ -399,12 +673,72 @@ const Home = ({navigation}) => {
               </View>
 
               <View style={styles.switchView}>
+                <Text style={styles.switchViewTitle}>نودلز</Text>
+                <Switch
+                  thumbColor={Colors.primary}
+                  trackColor={{true: Colors.accent, false: Colors.primary}}
+                  value={hasNodels}
+                  onValueChange={newValue => setHasNodels(newValue)}
+                />
+              </View>
+
+              <View style={styles.switchView}>
+                <Text style={styles.switchViewTitle}>لازانيا</Text>
+                <Switch
+                  thumbColor={Colors.primary}
+                  trackColor={{true: Colors.accent, false: Colors.primary}}
+                  value={hasLazanya}
+                  onValueChange={newValue => setHasLazanya(newValue)}
+                />
+              </View>
+
+              <View style={styles.switchView}>
+                <Text style={styles.switchViewTitle}>لسان عصفور</Text>
+                <Switch
+                  thumbColor={Colors.primary}
+                  trackColor={{true: Colors.accent, false: Colors.primary}}
+                  value={hasLessanAsfour}
+                  onValueChange={newValue => setHasLessanAsfour(newValue)}
+                />
+              </View>
+
+              <View style={styles.switchView}>
+                <Text style={styles.switchViewTitle}>شوفان</Text>
+                <Switch
+                  thumbColor={Colors.primary}
+                  trackColor={{true: Colors.accent, false: Colors.primary}}
+                  value={hasOat}
+                  onValueChange={newValue => setHasOat(newValue)}
+                />
+              </View>
+
+              <View style={styles.switchView}>
+                <Text style={styles.switchViewTitle}>شعرية</Text>
+                <Switch
+                  thumbColor={Colors.primary}
+                  trackColor={{true: Colors.accent, false: Colors.primary}}
+                  value={hasSherya}
+                  onValueChange={newValue => setHasSherya(newValue)}
+                />
+              </View>
+
+              <View style={styles.switchView}>
                 <Text style={styles.switchViewTitle}>فريك</Text>
                 <Switch
                   thumbColor={Colors.primary}
                   trackColor={{true: Colors.accent, false: Colors.primary}}
                   value={hasFrik}
                   onValueChange={newValue => setHasFrik(newValue)}
+                />
+              </View>
+
+              <View style={styles.switchView}>
+                <Text style={styles.switchViewTitle}>برغل</Text>
+                <Switch
+                  thumbColor={Colors.primary}
+                  trackColor={{true: Colors.accent, false: Colors.primary}}
+                  value={hasBorghal}
+                  onValueChange={newValue => setHasBorghal(newValue)}
                 />
               </View>
 
@@ -421,7 +755,7 @@ const Home = ({navigation}) => {
               </View>
 
               <View style={styles.switchView}>
-                <Text style={styles.switchViewTitle}>برنجان</Text>
+                <Text style={styles.switchViewTitle}>بتنجان</Text>
                 <Switch
                   thumbColor={Colors.primary}
                   trackColor={{true: Colors.accent, false: Colors.primary}}
@@ -499,9 +833,122 @@ const Home = ({navigation}) => {
                   onValueChange={newValue => setHasMolokhia(newValue)}
                 />
               </View>
+
+              <View style={styles.switchView}>
+                <Text style={styles.switchViewTitle}>بروكلي</Text>
+                <Switch
+                  thumbColor={Colors.primary}
+                  trackColor={{true: Colors.accent, false: Colors.primary}}
+                  value={hasBorccoli}
+                  onValueChange={newValue => setHasBorccoli(newValue)}
+                />
+              </View>
+
+              <View style={styles.switchView}>
+                <Text style={styles.switchViewTitle}>مشروم</Text>
+                <Switch
+                  thumbColor={Colors.primary}
+                  trackColor={{true: Colors.accent, false: Colors.primary}}
+                  value={hasMashroom}
+                  onValueChange={newValue => setHasMashroom(newValue)}
+                />
+              </View>
+
+              <View style={styles.switchView}>
+                <Text style={styles.switchViewTitle}>ذرة</Text>
+                <Switch
+                  thumbColor={Colors.primary}
+                  trackColor={{true: Colors.accent, false: Colors.primary}}
+                  value={hasCorn}
+                  onValueChange={newValue => setHasCorn(newValue)}
+                />
+              </View>
+
+              <View style={styles.switchView}>
+                <Text style={styles.switchViewTitle}>فاصوليا خضراء</Text>
+                <Switch
+                  thumbColor={Colors.primary}
+                  trackColor={{true: Colors.accent, false: Colors.primary}}
+                  value={hasGreenBeans}
+                  onValueChange={newValue => setHasGreenBeans(newValue)}
+                />
+              </View>
+
+              <View style={styles.switchView}>
+                <Text style={styles.switchViewTitle}>جزر</Text>
+                <Switch
+                  thumbColor={Colors.primary}
+                  trackColor={{true: Colors.accent, false: Colors.primary}}
+                  value={hasCarots}
+                  onValueChange={newValue => setHasCarots(newValue)}
+                />
+              </View>
+
+              <View style={styles.switchView}>
+                <Text style={styles.switchViewTitle}>بطاطا</Text>
+                <Switch
+                  thumbColor={Colors.primary}
+                  trackColor={{true: Colors.accent, false: Colors.primary}}
+                  value={hasSweetPotato}
+                  onValueChange={newValue => setHasSweetPotato(newValue)}
+                />
+              </View>
+
+              <Text style={styles.title}> بقوليات </Text>
+
+              <View style={styles.switchView}>
+                <Text style={styles.switchViewTitle}>عدس اصفر</Text>
+                <Switch
+                  thumbColor={Colors.primary}
+                  trackColor={{true: Colors.accent, false: Colors.primary}}
+                  value={hasYellowLentils}
+                  onValueChange={newValue => setHasYellowLentils(newValue)}
+                />
+              </View>
+
+              <View style={styles.switchView}>
+                <Text style={styles.switchViewTitle}>عدس بجبة</Text>
+                <Switch
+                  thumbColor={Colors.primary}
+                  trackColor={{true: Colors.accent, false: Colors.primary}}
+                  value={hasBlackLentils}
+                  onValueChange={newValue => setHasBlackLentils(newValue)}
+                />
+              </View>
+
+              <View style={styles.switchView}>
+                <Text style={styles.switchViewTitle}>حمص</Text>
+                <Switch
+                  thumbColor={Colors.primary}
+                  trackColor={{true: Colors.accent, false: Colors.primary}}
+                  value={hasHomous}
+                  onValueChange={newValue => setHasHomous(newValue)}
+                />
+              </View>
+
+              <View style={styles.switchView}>
+                <Text style={styles.switchViewTitle}>فاصوليا بيضاء</Text>
+                <Switch
+                  thumbColor={Colors.primary}
+                  trackColor={{true: Colors.accent, false: Colors.primary}}
+                  value={hasWhiteBeans}
+                  onValueChange={newValue => setHasWhiteBeans(newValue)}
+                />
+              </View>
+
+              <View style={styles.switchView}>
+                <Text style={styles.switchViewTitle}>لوبيا</Text>
+                <Switch
+                  thumbColor={Colors.primary}
+                  trackColor={{true: Colors.accent, false: Colors.primary}}
+                  value={hasLobya}
+                  onValueChange={newValue => setHasLobya(newValue)}
+                />
+              </View>
+
               <BannerAdUnite />
 
-              <Text style={styles.title}> نباتي - دايت - كيتو </Text>
+              <Text style={styles.title}> نباتي - دايت </Text>
               <View style={styles.switchView}>
                 <Text style={styles.switchViewTitle}>بناتي</Text>
                 <Switch
@@ -509,16 +956,6 @@ const Home = ({navigation}) => {
                   trackColor={{true: Colors.accent, false: Colors.primary}}
                   value={hasVegetarian}
                   onValueChange={newValue => setHasVegetarian(newValue)}
-                />
-              </View>
-
-              <View style={styles.switchView}>
-                <Text style={styles.switchViewTitle}>كيتو</Text>
-                <Switch
-                  thumbColor={Colors.primary}
-                  trackColor={{true: Colors.accent, false: Colors.primary}}
-                  value={hasKeto}
-                  onValueChange={newValue => setHasKeto(newValue)}
                 />
               </View>
 

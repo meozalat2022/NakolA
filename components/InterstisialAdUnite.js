@@ -3,7 +3,7 @@ import {Button, Platform} from 'react-native';
 import {InterstitialAd, AdEventType} from 'react-native-google-mobile-ads';
 
 const adUnitId = Platform.select({
-  android: 'ca-app-pub-2433696255996909/7274152804',
+  android: 'ca-app-pub-2433696255996909/9871276424',
   ios: 'ca-app-pub-2433696255996909/9244859969',
 });
 
@@ -33,6 +33,7 @@ const InterstisialAdUnite = () => {
 
   // No advert ready to show yet
   if (!loaded) {
+    console.log('ads not shown');
     return null;
   } else {
     interstitial.show();

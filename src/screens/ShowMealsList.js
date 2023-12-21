@@ -19,10 +19,15 @@ import {TIKTOK} from '../../SocialMedia/SocialMediaLinks';
 import firestore from '@react-native-firebase/firestore';
 import InterstisialAdUnite from '../../components/InterstisialAdUnite';
 import BannerAdUnite from '../../components/BannerAdUnite';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 const ShowMealsList = ({route, navigation}) => {
   const [meals, setMeals] = useState([]);
   const [isMealListLoaded, setIsMealListLoaded] = useState(false);
+  const [sortCat, setSortCat] = useState({
+    cat: 'timestamp',
+    type: 'asc',
+  });
 
   // useEffect(() => {
   //   interstitial();
@@ -35,7 +40,7 @@ const ShowMealsList = ({route, navigation}) => {
         await firestore()
           .collection('Meal')
           .where('categoryIds', 'array-contains', route.params.itemId)
-          .orderBy('timestamp')
+          .orderBy(sortCat.cat, sortCat.type)
           .get()
           .then(querySnapShot => {
             querySnapShot.forEach(doc => {
@@ -54,7 +59,7 @@ const ShowMealsList = ({route, navigation}) => {
       }
     };
     fetchMeals();
-  }, []);
+  }, [sortCat]);
 
   // console.log('meals and categories ======' ,meals)
   // console.log('******************************************')
@@ -78,6 +83,108 @@ const ShowMealsList = ({route, navigation}) => {
   return (
     <View style={styles.container}>
       <BannerAdUnite />
+
+      <View
+        style={{
+          flexDirection: 'row-reverse',
+          paddingVertical: 5,
+          borderColor: Colors.primary,
+          borderWidth: 2,
+          borderRadius: 10,
+          marginHorizontal: 2,
+          justifyContent: 'space-between',
+        }}>
+        <Text
+          style={{
+            marginHorizontal: 2,
+            fontSize: 18,
+            fontWeight: 'bold',
+            color: Colors.primary,
+          }}>
+          ترتيب :
+        </Text>
+        <View
+          style={{
+            flexDirection: 'row-reverse',
+            flex: 1,
+            justifyContent: 'space-around',
+          }}>
+          <Text
+            style={{
+              textAlign: 'center',
+              fontSize: 16,
+              fontWeight: 'bold',
+              color: Colors.primary,
+            }}>
+            السعرات
+          </Text>
+          <TouchableOpacity
+            onPress={() => setSortCat({cat: 'calories', type: 'asc'})}
+            style={{
+              marginHorizontal: 5,
+              justifyContent: 'center',
+            }}>
+            <FontAwesome5
+              name="sort-amount-up"
+              size={20}
+              color={Colors.primary}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => setSortCat({cat: 'calories', type: 'desc'})}
+            style={{
+              marginHorizontal: 5,
+              justifyContent: 'center',
+            }}>
+            <FontAwesome5
+              name="sort-amount-down"
+              size={20}
+              color={Colors.primary}
+            />
+          </TouchableOpacity>
+        </View>
+
+        <View
+          style={{
+            flexDirection: 'row-reverse',
+            flex: 1,
+            justifyContent: 'space-around',
+          }}>
+          <Text
+            style={{
+              textAlign: 'center',
+              fontSize: 16,
+              fontWeight: 'bold',
+              color: Colors.primary,
+            }}>
+            التاريخ
+          </Text>
+          <TouchableOpacity
+            onPress={() => setSortCat({cat: 'timestamp', type: 'asc'})}
+            style={{
+              marginHorizontal: 5,
+              justifyContent: 'center',
+            }}>
+            <FontAwesome5
+              name="sort-amount-up"
+              size={20}
+              color={Colors.primary}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => setSortCat({cat: 'timestamp', type: 'desc'})}
+            style={{
+              marginHorizontal: 5,
+              justifyContent: 'center',
+            }}>
+            <FontAwesome5
+              name="sort-amount-down"
+              size={20}
+              color={Colors.primary}
+            />
+          </TouchableOpacity>
+        </View>
+      </View>
       <FlatList
         numColumns={2}
         showsVerticalScrollIndicator={false}

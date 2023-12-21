@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text, ActivityIndicator} from 'react-native';
 import CountryFlag from 'react-native-country-flag';
 import Entypo from 'react-native-vector-icons/Entypo';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
@@ -10,7 +10,13 @@ import Colors from '../constants/Colors';
 const MealDetails = ({flag, duration, servings, calories}) => {
   return (
     <View style={{...styles.mealRow, ...styles.mealDetail}}>
-      {/* <CountryFlag isoCode={flag} size={15} /> */}
+      {!flag ? (
+        <View>
+          <ActivityIndicator />
+        </View>
+      ) : (
+        <CountryFlag isoCode={flag} size={15} />
+      )}
       <View style={{flexDirection: 'row', alignItems: 'center'}}>
         <Entypo name={'stopwatch'} size={24} color={Colors.accent} />
         <Text style={styles.mealDetailTitle}>{duration}</Text>
